@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:restarant_app/modules/sign_in/sign_in.dart';
+import 'package:restarant_app/shared/components/components.dart';
+import 'package:restarant_app/shared/networks/local/cash_helper/cash_helper.dart';
 import 'package:smooth_page_indicator/smooth_page_indicator.dart';
 
 class OnBoardingModel {
@@ -43,7 +46,9 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       appBar: AppBar(
         actions: [
           TextButton(
-            onPressed: () {},
+            onPressed: () {
+              submitData();
+            },
             child: Text('Skip'),
           ),
         ],
@@ -59,6 +64,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                       isLast = true;
                     });
                     print('isLast');
+                    submitData();
                   } else {
                     print('is not last');
                     setState(() {
@@ -100,6 +106,13 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
         ]),
       ),
     );
+  }
+
+  void submitData() {
+    CashHelper.saveData(key: 'onBoarding', value: true).then((value) {
+      print('hello');
+      navigateAndFinish(context, SignIn());
+    });
   }
 
   Widget buildBoardItem(OnBoardingModel onBoardingmodel) {
