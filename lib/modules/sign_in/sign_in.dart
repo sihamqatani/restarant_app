@@ -1,4 +1,3 @@
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:restarant_app/modules/Sign_up/sign_up.dart';
 import 'package:restarant_app/shared/components/components.dart';
