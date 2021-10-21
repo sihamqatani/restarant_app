@@ -95,12 +95,12 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
               Spacer(),
               FloatingActionButton(
                 onPressed: () {
-                  if(isLast){
-                    submitData()
-                  }else{
-                     boardController.nextPage(
-                            duration: Duration(microseconds: 750),
-                            curve: Curves.fastLinearToSlowEaseIn);
+                  if (isLast) {
+                    submitData();
+                  } else {
+                    boardController.nextPage(
+                        duration: Duration(microseconds: 750),
+                        curve: Curves.fastLinearToSlowEaseIn);
                   }
                 },
                 child: Icon(
