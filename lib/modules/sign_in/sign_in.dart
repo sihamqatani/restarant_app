@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:restarant_app/layouts/restarant_layout.dart';
 import 'package:restarant_app/modules/Sign_up/sign_up.dart';
 import 'package:restarant_app/shared/components/components.dart';
 
@@ -87,7 +88,9 @@ Widget drawButtom(context) {
             ),
           )),
       MaterialButton(
-        onPressed: () {},
+        onPressed: () {
+          navigateTo(context, RestarantLayout());
+        },
         child: Text('تخطي',
             style: TextStyle(color: Colors.red[200], fontFamily: 'Cairo')),
       ),
