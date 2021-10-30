@@ -96,9 +96,8 @@ Widget defaultFormField(
       validator: validate,
       decoration: InputDecoration(
         labelText: label,
-        prefixIcon: Icon(
-          prefix,
-        ),
+        prefixIcon: Icon(prefix, color: Colors.red[50]!),
+
         suffixIcon: suffix != null
             ? IconButton(
                 onPressed: suffixPressed,
@@ -107,7 +106,7 @@ Widget defaultFormField(
                 ),
               )
             : null,
-        border: OutlineInputBorder(),
+        // border: OutlineInputBorder(),
       ),
     );
 /*void signOut(context) {

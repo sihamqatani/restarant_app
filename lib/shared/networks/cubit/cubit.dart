@@ -18,6 +18,7 @@ class RestaurantCubit extends Cubit<RestaurantStates> {
     FavoritesScreen(),
     SettingScreen()
   ];
+  List<String> titles = ['الرئيسية', 'طلباتي', 'العروض', 'مفضلاتي', 'حسابي'];
   int currentIndex = 0;
   void changeBottomNav(int index) {
     currentIndex = index;

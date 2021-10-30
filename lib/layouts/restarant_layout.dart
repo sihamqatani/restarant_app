@@ -16,7 +16,8 @@ class RestarantLayout extends StatelessWidget {
                 appBar: AppBar(
                   iconTheme: IconThemeData(color: Colors.red[200]),
                   title: Text(
-                    ' مزاجي ',
+                    RestaurantCubit.get(context)
+                        .titles[RestaurantCubit.get(context).currentIndex],
                     style:
                         TextStyle(color: Colors.grey[900], fontFamily: 'Cairo'),
                   ),

@@ -26,92 +26,95 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   bool isLast = false;
   List<OnBoardingModel> onBoardingmodel = [
     OnBoardingModel(
-        title: 'Screen 1',
-        body: 'we have tasty foods',
+        title: 'وجبات متعددة',
+        body: 'اطلب الان وعيش الطعم الحقيقي',
         image: 'assets/images/31.jpg'),
     OnBoardingModel(
-        title: 'Screen 2',
-        body: 'we have tasty foods',
+        title: 'عصائرطازجة ',
+        body: 'بضغطه زر جرب الانتعاش',
         image: 'assets/images/2.png'),
     OnBoardingModel(
-        title: 'Screen 3',
-        body: 'we have tasty foods',
+        title: 'حلويات',
+        body: 'عيش طعم الحلا الاصلي ',
         image: 'assets/images/33.jpg'),
   ];
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      appBar: AppBar(
-        actions: [
-          TextButton(
-            onPressed: () {
-              submitData();
-            },
-            child: Text('Skip'),
-          ),
-        ],
-      ),
-      body: Padding(
-        padding: const EdgeInsets.all(20.0),
-        child: Column(children: [
-          Expanded(
-            child: PageView.builder(
-                onPageChanged: (value) {
-                  if (value == onBoardingmodel.length - 1) {
-                    setState(() {
-                      isLast = true;
-                    });
-                    print('isLast');
-                    submitData();
-                  } else {
-                    print('is not last');
-                    setState(() {
-                      isLast = false;
-                    });
-                  }
-                },
-                itemCount: onBoardingmodel.length,
-                controller: boardController,
-                itemBuilder: (context, index) {
-                  return buildBoardItem(onBoardingmodel[index]);
-                }),
-          ),
-          SizedBox(
-            height: 30,
-          ),
-          Row(
-            children: [
-              SmoothPageIndicator(
-                effect: SwapEffect(
-                  activeDotColor: Colors.red[200]!,
-                  spacing: 10,
-                  dotColor: Colors.grey,
+    return Directionality(
+      textDirection: TextDirection.rtl,
+      child: Scaffold(
+        backgroundColor: Colors.white,
+        appBar: AppBar(
+          actions: [
+            TextButton(
+              onPressed: () {
+                submitData();
+              },
+              child: Text('Skip'),
+            ),
+          ],
+        ),
+        body: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Column(children: [
+            Expanded(
+              child: PageView.builder(
+                  onPageChanged: (value) {
+                    if (value == onBoardingmodel.length - 1) {
+                      setState(() {
+                        isLast = true;
+                      });
+                      print('isLast');
+                      submitData();
+                    } else {
+                      print('is not last');
+                      setState(() {
+                        isLast = false;
+                      });
+                    }
+                  },
+                  itemCount: onBoardingmodel.length,
+                  controller: boardController,
+                  itemBuilder: (context, index) {
+                    return buildBoardItem(onBoardingmodel[index]);
+                  }),
+            ),
+            SizedBox(
+              height: 30,
+            ),
+            Row(
+              children: [
+                SmoothPageIndicator(
+                  effect: SwapEffect(
+                    activeDotColor: Colors.red[200]!,
+                    spacing: 10,
+                    dotColor: Colors.grey,
+                  ),
+                  controller: boardController,
+                  count: onBoardingmodel.length,
                 ),
-                controller: boardController,
-                count: onBoardingmodel.length,
-              ),
-              Spacer(),
-              FloatingActionButton(
-                onPressed: () {
-                  if (isLast) {
-                    submitData();
-                  } else {
-                    boardController.nextPage(
-                        duration: Duration(microseconds: 750),
-                        curve: Curves.fastLinearToSlowEaseIn);
-                  }
-                },
-                child: Icon(
-                  Icons.arrow_forward_ios_outlined,
-                  color: Colors.white,
-                ),
-                backgroundColor: Colors.red[200],
-              )
-            ],
-          )
-        ]),
+                Spacer(),
+                FloatingActionButton(
+                  onPressed: () {
+                    if (isLast) {
+                      submitData();
+                    } else {
+                      boardController.nextPage(
+                          duration: Duration(microseconds: 750),
+                          curve: Curves.fastLinearToSlowEaseIn);
+                    }
+                  },
+                  child: Icon(
+                    Icons.arrow_forward_ios_outlined,
+                    color: Colors.white,
+                  ),
+                  backgroundColor: Colors.red[200],
+                )
+              ],
+            )
+          ]),
+        ),
       ),
     );
   }

@@ -22,7 +22,7 @@ void main() async {
   }
   //onBoard = true;
   // onBoard = CashHelper.getData(key: 'onBoarding') as bool;
-  print('the value of obard in main $onBoard');
+  //print('the value of obard in main $onBoard');
   runApp(RestarantApp(
     startWidget: startWidget,
   ));

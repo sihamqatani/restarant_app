@@ -10,42 +10,42 @@ import 'package:restarant_app/shared/networks/cubit/states.dart';
 
 class HomeScreen extends StatelessWidget {
   List<Cateorgy> menuType = [
-    Cateorgy('برجر', 'assets/Images/Menus/burger.png'),
-    Cateorgy('بيتزا', 'assets/Images/Menus/pizza-slice.png'),
-    Cateorgy('ايسكريم', 'assets/Images/Menus/ice-cream.png'),
-    Cateorgy('لحم', 'assets/Images/Menus/meat.png'),
-    Cateorgy('معجنات', 'assets/Images/Menus/croissant.png'),
-    Cateorgy('دجاج', 'assets/Images/Menus/chicken-leg.png'),
-    Cateorgy('سباجيتي', 'assets/Images/Menus/noodles.png'),
-    Cateorgy('مشروبات', 'assets/Images/Menus/cola.png'),
-    Cateorgy('أرز', 'assets/Images/Menus/rice.png'),
+    Cateorgy('برجر', 'assets/Menus/burger.png'),
+    Cateorgy('بيتزا', 'assets/Menus/pizza-slice.png'),
+    Cateorgy('ايسكريم', 'assets/Menus/ice-cream.png'),
+    Cateorgy('لحم', 'assets/Menus/meat.png'),
+    Cateorgy('معجنات', 'assets/Menus/croissant.png'),
+    Cateorgy('دجاج', 'assets/Menus/chicken-leg.png'),
+    Cateorgy('سباجيتي', 'assets/Menus/noodles.png'),
+    Cateorgy('مشروبات', 'assets/Menus/cola.png'),
+    Cateorgy('أرز', 'assets/Menus/rice.png'),
   ];
   List<FoodDetails> foodDetails = [
     FoodDetails(
         name: 'رزمع الدجاج ',
-        imageUrl: 'assets/Images/Menus/popular_food/popular2.png',
+        imageUrl: 'assets/Menus/popular_food/popular2.png',
         noRating: 1.1,
         price: 20),
     FoodDetails(
         name: 'برياني ',
-        imageUrl: 'assets/Images/Menus/b.png',
+        imageUrl: 'assets/Menus/b.png',
         noRating: 1.9,
         price: 30),
     FoodDetails(
         name: 'برجركلاسيكي ',
-        imageUrl: 'assets/Images/Menus/b.png',
+        imageUrl: 'assets/Menus/b.png',
         noRating: 1.5,
         price: 25),
     FoodDetails(
         name: 'بيتزا ',
-        imageUrl: 'assets/Images/Menus/p.png',
+        imageUrl: 'assets/Menus/p.png',
         noRating: 2.5,
         price: 60),
   ];
   List imageSlider = [
-    'assets/Images/Menus/p.png',
-    'assets/Images/Menus/b.png',
-    'assets/Images/Menus/b.png'
+    'assets/Menus/p.png',
+    'assets/Menus/b.png',
+    'assets/Menus/b.png'
   ];
   Widget popularFoodMenu(BuildContext ctx) {
     //var rating;

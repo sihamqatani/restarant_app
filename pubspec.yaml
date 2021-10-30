@@ -56,27 +56,27 @@ flutter:
      - assets/images/31.jpg
      - assets/images/2.png
      - assets/images/33.jpg
-     - assets/Images/Menus/burger.png
-     - assets/Images/Menus/pizza.png
-     - assets/Images/Menus/popular_food/popular1.png
-     - assets/Images/Menus/popular_food/popular2.png
-     - assets/Images/Menus/popular_food/popular3.png
-     - assets/Images/Menus/fried-egg.png
-     - assets/Images/Menus/ice-cream.png
-     - assets/Images/Menus/meat.png
-     - assets/Images/Menus/pizza-slice.png
-     - assets/Images/Menus/cola.png
-     - assets/Images/Menus/noodles.png
-     - assets/Images/Menus/chicken-leg.png
-     - assets/Images/Menus/croissant.png
-     - assets/Images/Menus/rice.png
-     - assets/Images/Menus/popular_food/pop3.png
-     - assets/Images/Menus/popular_food/pop4.png
-     - assets/Images/Menus/b.png
-     - assets/Images/Menus/p.png
-     - assets/Images/imageSlider/1.png
-     - assets/Images/imageSlider/2.png
-     - assets/Images/imageSlider/3.png
+     - assets/Menus/burger.png
+     - assets/Menus/pizza.png
+     - assets/Menus/popular_food/popular1.png
+     - assets/Menus/popular_food/popular2.png
+     - assets/Menus/popular_food/popular3.png
+     - assets/Menus/fried-egg.png
+     - assets/Menus/ice-cream.png
+     - assets/Menus/meat.png
+     - assets/Menus/pizza-slice.png
+     - assets/Menus/cola.png
+     - assets/Menus/noodles.png
+     - assets/Menus/chicken-leg.png
+     - assets/Menus/croissant.png
+     - assets/Menus/rice.png
+     - assets/Menus/popular_food/pop3.png
+     - assets/Menus/popular_food/pop4.png
+     - assets/Menus/b.png
+     - assets/Menus/p.png
+     - assets/imageSlider/1.png
+     - assets/imageSlider/2.png
+     - assets/imageSlider/3.png
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
