@@ -45,19 +45,20 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
       textDirection: TextDirection.rtl,
       child: Scaffold(
         backgroundColor: Colors.white,
-        appBar: AppBar(
+        /* appBar: AppBar(
           actions: [
             TextButton(
               onPressed: () {
                 submitData();
               },
-              child: Text('Skip'),
+              child: Text('ابدأ'),
             ),
           ],
-        ),
+        ),*/
         body: Padding(
           padding: const EdgeInsets.all(20.0),
-          child: Column(children: [
+          child:
+              Column(crossAxisAlignment: CrossAxisAlignment.center, children: [
             Expanded(
               child: PageView.builder(
                   onPageChanged: (value) {
@@ -83,17 +84,47 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
             SizedBox(
               height: 30,
             ),
-            Row(
-              children: [
-                SmoothPageIndicator(
-                  effect: SwapEffect(
-                    activeDotColor: Colors.red[200]!,
-                    spacing: 10,
-                    dotColor: Colors.grey,
+            SmoothPageIndicator(
+              effect: SwapEffect(
+                activeDotColor: Colors.red[200]!,
+                spacing: 10,
+                dotColor: Colors.grey,
+              ),
+              controller: boardController,
+              count: onBoardingmodel.length,
+            ),
+            SizedBox(
+              height: 24,
+            ),
+            Container(
+                width: MediaQuery.of(context).size.width,
+                height: 40,
+                decoration: ShapeDecoration(
+                  shape: StadiumBorder(),
+                  gradient: LinearGradient(
+                    begin: Alignment.topLeft,
+                    end: Alignment.bottomRight,
+                    colors: [Colors.pink[300]!, Colors.red[200]!],
                   ),
-                  controller: boardController,
-                  count: onBoardingmodel.length,
                 ),
+                child: MaterialButton(
+                    materialTapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                    shape: StadiumBorder(),
+                    child: Text(
+                      'ابدأ الان',
+                      style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 22,
+                          wordSpacing: 2,
+                          letterSpacing: 2,
+                          fontFamily: 'Cairo'),
+                    ),
+                    onPressed: () {
+                      submitData();
+                    }))
+
+            /* Row(
+              children: [
                 Spacer(),
                 FloatingActionButton(
                   onPressed: () {
@@ -112,7 +143,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                   backgroundColor: Colors.red[200],
                 )
               ],
-            )
+            )*/
           ]),
         ),
       ),
@@ -130,7 +161,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
     return Padding(
       padding: const EdgeInsets.all(8.0),
       child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
+        crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           Expanded(
               child: Image(

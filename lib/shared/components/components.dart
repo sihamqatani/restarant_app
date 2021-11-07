@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
-//import 'package:fluttertoast/fluttertoast.dart';
+import 'package:fluttertoast/fluttertoast.dart';
+import 'package:loading_indicator/loading_indicator.dart';
+
 //import 'package:shop01_app/modules/login_screen/shop_login_screen.dart';
 //import 'package:shop01_app/shared/network/local/cash_helper.dart';
 
@@ -15,19 +17,19 @@ void navigateAndFinish(context, widget) {
   }), (Route<dynamic> route) => false);
 }
 
-/*void showToast({required String message, required ToastColorstate state}) {
+void showToast({required String message, required ToastColorstate state}) {
   Fluttertoast.showToast(
       msg: message,
       toastLength: Toast.LENGTH_SHORT,
-      gravity: ToastGravity.BOTTOM,
+      gravity: ToastGravity.CENTER,
       timeInSecForIosWeb: 1,
       backgroundColor: chooseToastColor(state),
       textColor: Colors.white,
       fontSize: 16.0);
-}*/
+}
 
-//enum ToastColorstate { SUCCESS, ERROR, WARNING }
-/*Color chooseToastColor(ToastColorstate state) {
+enum ToastColorstate { SUCCESS, ERROR, WARNING }
+Color chooseToastColor(ToastColorstate state) {
   Color color;
   switch (state) {
     case ToastColorstate.SUCCESS:
@@ -41,7 +43,23 @@ void navigateAndFinish(context, widget) {
       break;
   }
   return color;
-}*/
+}
+
+Widget loadingIndicator() {
+  return LoadingIndicator(
+    indicatorType: Indicator.ballPulse,
+
+    /// Required, The loading type of the widget
+    colors: [Colors.pink[200]!, Colors.red[100]!, Colors.red[400]!],
+
+    /// Optional, The color collections
+    strokeWidth: 1,
+
+    /// Optional, The stroke of the line, only applicable to widget which contains line
+    // backgroundColor: Colors.black,      /// Optional, Background of the widget
+    //pathBackgroundColor: Colors.black   /// Optional, the stroke backgroundColor
+  );
+}
 
 Widget defaultButton({
   double width = double.infinity,

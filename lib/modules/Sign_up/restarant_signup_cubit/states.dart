@@ -17,3 +17,7 @@ class RestarantSingUpErrorState extends RestarantSignUpStates {
     required this.error,
   });
 }
+
+class RestarantCreateUserErrorState extends RestarantSignUpStates {}
+
+class RestarantCreateUserSuccessrState extends RestarantSignUpStates {}

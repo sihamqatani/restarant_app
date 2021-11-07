@@ -1,42 +1,18 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_conditional_rendering/conditional.dart';
+import 'package:restarant_app/modules/Sign_up/restarant_signup_cubit/cubit.dart';
+import 'package:restarant_app/modules/Sign_up/restarant_signup_cubit/states.dart';
+import 'package:restarant_app/modules/sign_in/sign_in.dart';
+import 'package:restarant_app/shared/components/components.dart';
 
 class SignUp extends StatelessWidget {
-  @override
-  Widget build(BuildContext context) {
-    return Directionality(
-      textDirection: TextDirection.rtl,
-      child: Scaffold(
-        backgroundColor: Colors.white,
-        body: SafeArea(
-          child: SingleChildScrollView(
-            child: Stack(
-              children: [
-                Container(
-                  height: MediaQuery.of(context).size.height * .8,
-                  width: MediaQuery.of(context).size.width,
-                  decoration: BoxDecoration(
-                      color: Colors.pink[50],
-                      borderRadius: BorderRadius.only(
-                        bottomLeft: Radius.circular(50),
-                        bottomRight: Radius.circular(50),
-                      )),
-                ),
-                Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    drawLogo(),
-                    drawSingIn(context),
-                    //drawButtom(),
-                  ],
-                )
-              ],
-            ),
-          ),
-        ),
-      ),
-    );
-  }
-
+  var formKey = GlobalKey<FormState>();
+  late var emailController = TextEditingController();
+  late var passwordController = TextEditingController();
+  late var nameController = TextEditingController();
+  late var phoneController = TextEditingController();
   Widget drawLogo() {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -56,167 +32,243 @@ class SignUp extends StatelessWidget {
     );
   }
 
-  Widget drawButtom() {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        MaterialButton(
-            onPressed: () {},
-            child: RichText(
-              text: TextSpan(children: [
-                TextSpan(
-                    text: 'لاتمتلك حساب',
-                    style: TextStyle(color: Colors.black, fontFamily: 'Cairo')),
-                TextSpan(
-                    text: 'انشئ حسابك',
-                    style:
-                        TextStyle(color: Colors.red[200], fontFamily: 'Cairo')),
-              ]),
-            ))
-      ],
-    );
-  }
-
-  Widget drawSingIn(context) {
-    return Row(mainAxisAlignment: MainAxisAlignment.center, children: [
-      ClipRRect(
-        borderRadius: BorderRadius.all(
-          Radius.circular(20),
-        ),
-        child: Container(
-            width: MediaQuery.of(context).size.width * 0.8,
-            height: MediaQuery.of(context).size.height * 0.7,
-            decoration: BoxDecoration(
-              color: Colors.white,
-            ),
-// borderRadius: BorderRadius.only(
-//topLeft: Radius.circular(30), topRight: Radius.circular(30))),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          "تسجيل",
-                          style: TextStyle(
-                              fontWeight: FontWeight.bold,
-                              fontSize: 20,
-                              color: Colors.black54,
-                              fontFamily: 'Cairo'),
-                        ),
-                      ]),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.face,
-                          color: Colors.red[50],
-                        ),
-                        labelText: ' الاسم',
-                        hintText: 'الرجاءادخال االاسم',
-                      ),
-                      onChanged: (value) {}),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                      keyboardType: TextInputType.emailAddress,
-                      decoration: InputDecoration(
-                        prefixIcon: Icon(
-                          Icons.email,
-                          color: Colors.red[50],
-                        ),
-                        labelText: ' الايميل او رقم الهاتف',
-                        hintText: 'الرجاءادخال الايميل او رقم الهاتف',
-                      ),
-                      onChanged: (value) {}),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: TextFormField(
-                    keyboardType: TextInputType.visiblePassword,
-                    decoration: InputDecoration(
-                      prefixIcon: Icon(
-                        Icons.lock,
-                        color: Colors.red[50],
-                      ),
-                      labelText: 'ادخل كلمة المرور',
-                      hintText: 'الرجاء ادخال كلمةالمرور',
+  @override
+  Widget build(BuildContext context) {
+    return BlocConsumer<SignUpCubit, RestarantSignUpStates>(
+        listener: (context, state) {
+      if (state is RestarantSignUPSuccessState) {
+        navigateAndFinish(context, SignIn());
+        showToast(state: ToastColorstate.SUCCESS, message: 'تم التسجيل بنجاح');
+      }
+    }, builder: (context, state) {
+      return Form(
+        key: formKey,
+        child: Directionality(
+          textDirection: TextDirection.rtl,
+          child: Scaffold(
+            backgroundColor: Colors.white,
+            body: SafeArea(
+              child: SingleChildScrollView(
+                child: Stack(
+                  children: [
+                    Container(
+                      height: MediaQuery.of(context).size.height * .8,
+                      width: MediaQuery.of(context).size.width,
+                      decoration: BoxDecoration(
+                          color: Colors.pink[50],
+                          borderRadius: BorderRadius.only(
+                            bottomLeft: Radius.circular(50),
+                            bottomRight: Radius.circular(50),
+                          )),
                     ),
-                    onChanged: (value) {},
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Container(
-                        child: MaterialButton(
-                            color: Colors.red[200],
-                            child: Text(
-                              'تسجيل',
-                              style: TextStyle(
-                                  color: Colors.white,
-                                  fontSize: 19,
-                                  fontWeight: FontWeight.bold,
-                                  letterSpacing: 1,
-                                  fontFamily: 'Cairo'),
-                            ),
-                            shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(20)),
-                            onPressed: () {}),
-                        height: 1.4 * (MediaQuery.of(context).size.height / 20),
-                        width: 5 * (MediaQuery.of(context).size.width / 10),
-                      ),
-                    ],
-                  ),
-                ),
-                Padding(
-                  padding: const EdgeInsets.all(8.0),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        '-OR-',
-                        style: TextStyle(fontSize: 16, fontFamily: 'Cairo'),
-                      ),
-                    ],
-                  ),
-                ),
-                Expanded(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: GestureDetector(
-                      onTap: () {},
-                      child: Row(
+                    Expanded(
+                      child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
-                          Container(
-// margin: EdgeInsets.only(bottom: 19),
-                              child: CircleAvatar(
-                            radius: 100,
-// backgroundColor: Colors.lightBlueAccent,
-                            child: Icon(
-                              Icons.facebook,
-                              color: Colors.white,
-                            ),
-                          ))
+                          drawLogo(),
+                          Row(
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.all(
+                                    Radius.circular(20),
+                                  ),
+                                  child: Container(
+                                      width: MediaQuery.of(context).size.width *
+                                          0.8,
+                                      height:
+                                          MediaQuery.of(context).size.height *
+                                              0.9,
+                                      decoration: BoxDecoration(
+                                        color: Colors.white,
+                                      ),
+                                      // borderRadius: BorderRadius.only(
+                                      //topLeft: Radius.circular(30), topRight: Radius.circular(30))),
+                                      child: Column(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
+                                        crossAxisAlignment:
+                                            CrossAxisAlignment.center,
+                                        children: [
+                                          Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Row(
+                                                mainAxisAlignment:
+                                                    MainAxisAlignment.center,
+                                                children: [
+                                                  Text(
+                                                    "تسجيل",
+                                                    style: TextStyle(
+                                                        fontWeight:
+                                                            FontWeight.bold,
+                                                        fontSize: 20,
+                                                        color: Colors.black54,
+                                                        fontFamily: 'Cairo'),
+                                                  ),
+                                                ]),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Expanded(
+                                              child: defaultFormField(
+                                                controller: nameController,
+                                                type: TextInputType.name,
+                                                validate: (value) {
+                                                  if (value!.isEmpty)
+                                                    return 'الرجاء ادخل اسمك';
+                                                },
+                                                label: 'ادخل اسمك',
+                                                prefix: Icons.face,
+                                              ),
+                                            ),
+                                          ),
+                                          Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: defaultFormField(
+                                              controller: emailController,
+                                              type: TextInputType.emailAddress,
+                                              validate: (value) {
+                                                if (value!.isEmpty)
+                                                  return 'ادخل بريدك';
+                                              },
+                                              label: 'ادخل بريدك',
+                                              prefix: Icons.email,
+                                            ),
+                                          ),
+                                          Padding(
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              child: defaultFormField(
+                                                  controller:
+                                                      passwordController,
+                                                  type: TextInputType
+                                                      .visiblePassword,
+                                                  validate: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return 'ادخل كلمة المرور';
+                                                    }
+                                                  },
+                                                  label: 'ادخل كلمة المرور',
+                                                  prefix: Icons.lock)),
+                                          Padding(
+                                              padding:
+                                                  const EdgeInsets.all(5.0),
+                                              child: defaultFormField(
+                                                  controller: phoneController,
+                                                  type: TextInputType.phone,
+                                                  validate: (value) {
+                                                    if (value!.isEmpty) {
+                                                      return 'ادخل رقم الهاتف';
+                                                    }
+                                                  },
+                                                  label: 'ادخل كلمة المرور',
+                                                  prefix: Icons.phone,
+                                                  onSubmit: (value) {
+                                                    if (formKey.currentState!
+                                                        .validate()) {
+                                                      print('done');
+                                                      SignUpCubit.get(context)
+                                                          .UserSignUp(
+                                                              email:
+                                                                  emailController
+                                                                      .text,
+                                                              password:
+                                                                  passwordController
+                                                                      .text,
+                                                              name:
+                                                                  nameController
+                                                                      .text,
+                                                              phone:
+                                                                  phoneController
+                                                                      .text);
+                                                    }
+                                                  })),
+                                          Padding(
+                                            padding: const EdgeInsets.all(5.0),
+                                            child: Container(
+                                              child: Conditional.single(
+                                                  context: context,
+                                                  conditionBuilder: (context) =>
+                                                      state
+                                                          is! RestarantSignUpLoadingState,
+                                                  widgetBuilder: (context) {
+                                                    return MaterialButton(
+                                                      height: 1.4 *
+                                                          (MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .height /
+                                                              20),
+                                                      minWidth: 5 *
+                                                          (MediaQuery.of(
+                                                                      context)
+                                                                  .size
+                                                                  .width /
+                                                              10),
+                                                      color: Colors.red[200],
+                                                      child: Text(
+                                                        'تسجيل',
+                                                        style: TextStyle(
+                                                            color: Colors.white,
+                                                            fontSize: 19,
+                                                            fontWeight:
+                                                                FontWeight.bold,
+                                                            letterSpacing: 1,
+                                                            fontFamily:
+                                                                'Cairo'),
+                                                      ),
+                                                      shape:
+                                                          RoundedRectangleBorder(
+                                                              borderRadius:
+                                                                  BorderRadius
+                                                                      .circular(
+                                                                          20)),
+                                                      onPressed: () {
+                                                        if (formKey
+                                                            .currentState!
+                                                            .validate()) {
+                                                          SignUpCubit.get(context).UserSignUp(
+                                                              email:
+                                                                  emailController
+                                                                      .text,
+                                                              password:
+                                                                  passwordController
+                                                                      .text,
+                                                              name:
+                                                                  nameController
+                                                                      .text,
+                                                              phone:
+                                                                  phoneController
+                                                                      .text);
+                                                        }
+                                                      },
+                                                    );
+                                                  },
+                                                  fallbackBuilder: (context) =>
+                                                      Center(
+                                                        child: Container(
+                                                            height: 100,
+                                                            width: 100,
+                                                            child:
+                                                                loadingIndicator()),
+                                                      )),
+                                            ),
+                                          ),
+                                        ],
+                                      )),
+                                )
+                              ]),
+                          //drawButtom(),
                         ],
                       ),
-                    ),
-                  ),
+                    )
+                  ],
                 ),
-              ],
-            )),
-      )
-    ]);
+              ),
+            ),
+          ),
+        ),
+      );
+    });
   }
 }
