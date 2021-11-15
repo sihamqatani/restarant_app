@@ -53,23 +53,28 @@ class RestarantApp extends StatelessWidget {
       child: MaterialApp(
           debugShowCheckedModeBanner: false,
           theme: ThemeData(
+            fontFamily: 'Cairo',
+            focusColor: Colors.red[200],
+            primaryColor: Colors.red[200],
             appBarTheme: AppBarTheme(
                 actionsIconTheme: IconThemeData(color: Colors.red[100]),
-                iconTheme: IconThemeData(color: Colors.black),
-                backwardsCompatibility: false,
+                iconTheme: IconThemeData(color: Colors.red[200]),
+                backwardsCompatibility: true,
                 backgroundColor: Colors.white,
                 elevation: 0,
                 titleTextStyle: TextStyle(
                     fontWeight: FontWeight.bold,
                     fontSize: 20,
-                    color: Colors.black),
+                    color: Colors.red[400]),
                 systemOverlayStyle: SystemUiOverlayStyle(
                   statusBarColor: Colors.white,
                   statusBarIconBrightness: Brightness.dark,
                 )),
             bottomNavigationBarTheme: BottomNavigationBarThemeData(
+                unselectedItemColor: Colors.grey,
                 selectedItemColor: Colors.red[100],
                 elevation: 2,
+                selectedLabelStyle: TextStyle(fontFamily: 'Cairo'),
                 type: BottomNavigationBarType.fixed),
           ),
           home: startWidget),

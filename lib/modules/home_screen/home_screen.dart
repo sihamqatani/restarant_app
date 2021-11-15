@@ -5,6 +5,9 @@ import 'package:flutter_conditional_rendering/flutter_conditional_rendering.dart
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restarant_app/models/catoregy/catogrey_model.dart';
 import 'package:restarant_app/models/food_details_model.dart/food_details_model.dart';
+import 'package:restarant_app/modules/catogragy_screen/catogragy_screen.dart';
+import 'package:restarant_app/modules/details_food_screen/details_food_screen.dart';
+import 'package:restarant_app/shared/components/components.dart';
 import 'package:restarant_app/shared/networks/cubit/cubit.dart';
 import 'package:restarant_app/shared/networks/cubit/states.dart';
 
@@ -85,10 +88,12 @@ class HomeScreen extends StatelessWidget {
                   child: Stack(
                     children: [
                       Align(
+                        alignment: Alignment.topLeft,
                         child: IconButton(
                           onPressed: () {},
                           icon: Icon(
                             Icons.favorite_border,
+                            color: Colors.red[200],
                             size: 25,
                           ),
                         ),
@@ -104,7 +109,15 @@ class HomeScreen extends StatelessWidget {
                           height: 350,
                           child: Center(
                             child: GestureDetector(
-                              onTap: () {},
+                              onTap: () {
+                                navigateTo(
+                                    context,
+                                    FoodDetailsScreen(
+                                        image: foodDetails[index].imageUrl,
+                                        name: foodDetails[index].name,
+                                        rating: foodDetails[index].noRating,
+                                        price: foodDetails[index].price));
+                              },
                               child: Image.asset(
                                 foodDetails[index].imageUrl,
                                 // 'assets/Images/Menus/popular_food/popular1.png',
@@ -133,7 +146,7 @@ class HomeScreen extends StatelessWidget {
                             alignment: Alignment.centerRight,
                           ),
                           SizedBox(
-                            height: 10,
+                            height: 5,
                           ),
                           Padding(
                             padding: const EdgeInsets.only(right: 8, left: 8),
@@ -191,7 +204,7 @@ class HomeScreen extends StatelessWidget {
                                       fontFamily: 'Cairo'),
                                 ),
                                 Padding(
-                                  padding: const EdgeInsets.only(bottom: 14),
+                                  padding: const EdgeInsets.only(bottom: 12),
                                   child: CircleAvatar(
                                     backgroundColor: Colors.red[100],
                                     radius: 20,
@@ -237,7 +250,8 @@ class HomeScreen extends StatelessWidget {
 
         child: ListView.builder(
           shrinkWrap: true,
-          itemBuilder: (context, index) => drawTopMenu(menuType[index]),
+          itemBuilder: (context, index) =>
+              drawTopMenu(menuType[index], context),
           //shrinkWrap: true,
 
           itemCount: menuType.length,
@@ -248,7 +262,7 @@ class HomeScreen extends StatelessWidget {
     );
   }
 
-  Widget drawTopMenu(Cateorgy menuType) {
+  Widget drawTopMenu(Cateorgy menuType, context) {
     return Container(
       // margin:EdgeInsets.symmetric(horizontal:5),
       child: Column(
@@ -256,7 +270,9 @@ class HomeScreen extends StatelessWidget {
           Card(
               margin: EdgeInsets.symmetric(horizontal: 5),
               child: InkWell(
-                onTap: () {},
+                onTap: () {
+                  navigateTo(context, CatogryScreen());
+                },
                 child: Container(
                   decoration: BoxDecoration(
                     // color: Colors.white,
@@ -296,11 +312,13 @@ class HomeScreen extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: TextField(
+          cursorColor: Colors.red[100],
           decoration: InputDecoration(
+            focusColor: Colors.red[100],
             hintText: 'اكتب الوجبة التي تريدها',
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red[50]!),
-              borderRadius: BorderRadius.all(Radius.circular(10.0)),
+              borderRadius: BorderRadius.all(Radius.circular(60.0)),
             ),
             prefixIcon: Icon(
               Icons.search,
@@ -348,7 +366,7 @@ class HomeScreen extends StatelessWidget {
                   ),
                 ],
               ),
-              height: 200,
+              height: 150,
               // color: Colors.white,
               width: MediaQuery.of(context).size.width,
               margin: EdgeInsets.symmetric(horizontal: 5.0),

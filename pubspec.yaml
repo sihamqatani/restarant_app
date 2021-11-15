@@ -40,6 +40,10 @@ dependencies:
   firebase_auth: 
   fluttertoast: ^8.0.8
   loading_indicator: ^3.0.2
+  google_nav_bar: ^5.0.5
+  persistent_bottom_nav_bar: ^4.0.2
+  bottom_navy_bar: ^6.0.0
+  
 
 dev_dependencies:
   flutter_test:
@@ -102,6 +106,7 @@ flutter:
       fonts:
         - asset: assets/Cairo/Cairo-ExtraLight.ttf
         - asset: assets/Cairo/Cairo-Light.ttf
+        - asset: assets/Cairo/Cairo-Bold.ttf
           style: italic
   #   - family: Trajan Pro
   #     fonts:

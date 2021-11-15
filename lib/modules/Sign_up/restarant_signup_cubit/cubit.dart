@@ -23,7 +23,7 @@ class SignUpCubit extends Cubit<RestarantSignUpStates> {
         cover: 'assets/b.jpg');
   }
 
-  void UserSignUp(
+  void userSignUp(
       {required String email,
       required String password,
       required String name,

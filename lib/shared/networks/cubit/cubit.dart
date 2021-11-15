@@ -11,6 +11,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 class RestaurantCubit extends Cubit<RestaurantStates> {
   RestaurantCubit() : super(RestaurantInitialState());
   static RestaurantCubit get(context) => BlocProvider.of(context);
+  var pageViewController = PageController();
   List<Widget> screens = [
     HomeScreen(),
     CartScreen(),
@@ -22,6 +23,7 @@ class RestaurantCubit extends Cubit<RestaurantStates> {
   int currentIndex = 0;
   void changeBottomNav(int index) {
     currentIndex = index;
+
     emit(RestaurantBottomNavState());
   }
 }

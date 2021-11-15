@@ -168,7 +168,7 @@ class SignUp extends StatelessWidget {
                                                         .validate()) {
                                                       print('done');
                                                       SignUpCubit.get(context)
-                                                          .UserSignUp(
+                                                          .userSignUp(
                                                               email:
                                                                   emailController
                                                                       .text,
@@ -227,7 +227,7 @@ class SignUp extends StatelessWidget {
                                                         if (formKey
                                                             .currentState!
                                                             .validate()) {
-                                                          SignUpCubit.get(context).UserSignUp(
+                                                          SignUpCubit.get(context).userSignUp(
                                                               email:
                                                                   emailController
                                                                       .text,
