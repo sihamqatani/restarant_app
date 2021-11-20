@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restarant_app/shared/networks/cubit/cubit.dart';
+import 'package:restarant_app/shared/networks/cubit/mode_cubit/mode_cubit.dart';
 import 'package:restarant_app/shared/networks/cubit/states.dart';
 
 class CartScreen extends StatelessWidget {
@@ -13,7 +14,8 @@ class CartScreen extends StatelessWidget {
           textDirection: TextDirection.rtl,
           child: Scaffold(
             bottomNavigationBar: Container(
-              color: Colors.white,
+              color:
+                  ModeCubit.get(context).isDark ? Colors.black12 : Colors.white,
               width: 50,
               height: 150,
               child: Column(

@@ -9,6 +9,7 @@ import 'package:restarant_app/modules/catogragy_screen/catogragy_screen.dart';
 import 'package:restarant_app/modules/details_food_screen/details_food_screen.dart';
 import 'package:restarant_app/shared/components/components.dart';
 import 'package:restarant_app/shared/networks/cubit/cubit.dart';
+import 'package:restarant_app/shared/networks/cubit/mode_cubit/mode_cubit.dart';
 import 'package:restarant_app/shared/networks/cubit/states.dart';
 
 class HomeScreen extends StatelessWidget {
@@ -82,7 +83,9 @@ class HomeScreen extends StatelessWidget {
                 height: 400,
                 child: Card(
                   elevation: 0,
-                  color: Colors.white,
+                  color: ModeCubit.get(context).isDark
+                      ? Colors.black12
+                      : Colors.white,
                   shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(12.0)),
                   child: Stack(
@@ -138,7 +141,9 @@ class HomeScreen extends StatelessWidget {
                                 foodDetails[index].name,
                                 //'ستيك لحم مع الخضار',
                                 style: TextStyle(
-                                    color: Colors.grey[600],
+                                    color: ModeCubit.get(context).isDark
+                                        ? Colors.white70
+                                        : Colors.grey[600],
                                     fontSize: 18,
                                     fontFamily: 'Cairo'),
                               ),
@@ -163,7 +168,10 @@ class HomeScreen extends StatelessWidget {
 
                                     //  .toString(),
                                     style: TextStyle(
-                                        color: Colors.grey[600], fontSize: 22),
+                                        color: ModeCubit.get(context).isDark
+                                            ? Colors.white60
+                                            : Colors.grey[600],
+                                        fontSize: 22),
                                   ),
                                   Container(
                                     child: RatingBar.builder(
@@ -299,16 +307,20 @@ class HomeScreen extends StatelessWidget {
           Text(
             menuType.name,
             style: TextStyle(
-                color: Colors.grey[900], fontSize: 12, fontFamily: 'Cairo'),
+                color: ModeCubit.get(context).isDark
+                    ? Colors.white60
+                    : Colors.grey[900],
+                fontSize: 12,
+                fontFamily: 'Cairo'),
           ),
         ],
       ),
     );
   }
 
-  Widget searchPart() {
+  Widget searchPart(context) {
     return Container(
-      color: Colors.white,
+      color: ModeCubit.get(context).isDark ? Colors.black12 : Colors.white,
       child: Padding(
         padding: const EdgeInsets.only(top: 8, left: 8, right: 8),
         child: TextField(
@@ -316,6 +328,11 @@ class HomeScreen extends StatelessWidget {
           decoration: InputDecoration(
             focusColor: Colors.red[100],
             hintText: 'اكتب الوجبة التي تريدها',
+            hintStyle: TextStyle(
+              color: ModeCubit.get(context).isDark
+                  ? Colors.white54
+                  : Colors.grey[900],
+            ),
             border: OutlineInputBorder(
               borderSide: BorderSide(color: Colors.red[50]!),
               borderRadius: BorderRadius.all(Radius.circular(60.0)),
@@ -355,7 +372,9 @@ class HomeScreen extends StatelessWidget {
             return Container(
               decoration: BoxDecoration(
                 border: Border.all(
-                  color: Colors.white,
+                  color: ModeCubit.get(context).isDark
+                      ? Colors.black12
+                      : Colors.white,
                   width: 5,
                 ),
                 borderRadius: BorderRadius.circular(10),
@@ -403,7 +422,7 @@ class HomeScreen extends StatelessWidget {
                     child: Column(
                       mainAxisSize: MainAxisSize.min,
                       children: [
-                        searchPart(),
+                        searchPart(context),
                         topMenuPart(context, menuType),
                         drawTextSlider(),
                         drawImageSlider(),

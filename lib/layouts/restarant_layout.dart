@@ -2,6 +2,7 @@ import 'package:bottom_navy_bar/bottom_navy_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:restarant_app/shared/networks/cubit/cubit.dart';
+import 'package:restarant_app/shared/networks/cubit/mode_cubit/mode_cubit.dart';
 import 'package:restarant_app/shared/networks/cubit/states.dart';
 
 class RestarantLayout extends StatelessWidget {
@@ -19,11 +20,17 @@ class RestarantLayout extends StatelessWidget {
                   title: Text(
                     RestaurantCubit.get(context)
                         .titles[RestaurantCubit.get(context).currentIndex],
-                    style:
-                        TextStyle(color: Colors.grey[900], fontFamily: 'Cairo'),
+                    style: TextStyle(
+                        color: ModeCubit.get(context).isDark
+                            ? Colors.white70
+                            : Colors.grey[900],
+                        fontFamily: 'Cairo'),
                   ),
                 ),
                 bottomNavigationBar: BottomNavyBar(
+                  backgroundColor: ModeCubit.get(context).isDark
+                      ? Colors.grey[900]
+                      : Colors.white,
                   iconSize: 20,
                   showElevation: true,
                   selectedIndex: cubit.currentIndex,

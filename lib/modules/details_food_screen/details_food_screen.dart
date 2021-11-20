@@ -4,6 +4,7 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:restarant_app/layouts/restarant_layout.dart';
 import 'package:restarant_app/models/food_details_model.dart/food_details_model.dart';
 import 'package:restarant_app/shared/components/components.dart';
+import 'package:restarant_app/shared/networks/cubit/mode_cubit/mode_cubit.dart';
 
 class FoodDetailsScreen extends StatelessWidget {
   String? image;
@@ -33,7 +34,9 @@ class FoodDetailsScreen extends StatelessWidget {
                 children: [
                   Container(
                     alignment: Alignment.topRight,
-                    color: Colors.red[100],
+                    color: ModeCubit.get(context).isDark
+                        ? Colors.black
+                        : Colors.red[100],
                     height: MediaQuery.of(context).size.height,
                     width: MediaQuery.of(context).size.width,
                     child: Padding(
@@ -79,7 +82,9 @@ class FoodDetailsScreen extends StatelessWidget {
                       width: MediaQuery.of(context).size.width,
                       height: MediaQuery.of(context).size.height * 0.7,
                       decoration: BoxDecoration(
-                        color: Colors.white,
+                        color: ModeCubit.get(context).isDark
+                            ? Colors.grey[900]
+                            : Colors.white,
                         borderRadius: BorderRadius.only(
                           topRight: Radius.circular(50.0),
                           topLeft: Radius.circular(50.0),
@@ -123,7 +128,12 @@ class FoodDetailsScreen extends StatelessWidget {
                                 children: [
                                   Text('التقييم :',
                                       style: TextStyle(
-                                          fontFamily: 'Cairo', fontSize: 20)),
+                                        fontFamily: 'Cairo',
+                                        fontSize: 20,
+                                        color: ModeCubit.get(context).isDark
+                                            ? Colors.white70
+                                            : Colors.black,
+                                      )),
                                   Spacer(),
                                   Container(
                                     child: RatingBar.builder(
@@ -152,6 +162,9 @@ class FoodDetailsScreen extends StatelessWidget {
                                 'يتكون من لحم بقري طازج محضر بأجود انواع التوابل مع صوص خاص يجعل مذاقه لايقاوم الصوص حار وبارد حسب ',
                                 style: TextStyle(
                                   fontSize: 15,
+                                  color: ModeCubit.get(context).isDark
+                                      ? Colors.white60
+                                      : Colors.black,
                                 ),
                                 maxLines: 3,
                               ),

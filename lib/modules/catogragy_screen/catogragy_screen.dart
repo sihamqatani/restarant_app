@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
+import 'package:restarant_app/shared/networks/cubit/mode_cubit/mode_cubit.dart';
 
 class CatogryScreen extends StatelessWidget {
   @override
@@ -27,7 +28,9 @@ class CatogryScreen extends StatelessWidget {
               return Card(
                 shadowColor: Colors.white,
                 elevation: 0,
-                color: Colors.white,
+                color: ModeCubit.get(context).isDark
+                    ? Colors.black12
+                    : Colors.white,
                 shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(12.0)),
                 child: Stack(
